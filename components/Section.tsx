@@ -1,6 +1,5 @@
 import { StyleSheet, View, Text, Pressable, Image } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserDoctor } from '@fortawesome/free-solid-svg-icons/faUserDoctor';
 import { Link } from 'expo-router';
 
 import { getThumbnail } from '@/services/assetService';
