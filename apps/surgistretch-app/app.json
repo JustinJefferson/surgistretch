@@ -25,6 +25,14 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "asset-pack-delivery",
+        [{
+          "name": "assets",
+          "path": "asset-pack",
+          "deliveryMode": "install-time"
+        }]
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -40,9 +48,9 @@
         "expo-build-properties",
         {
           "android": {
-            "enableProguardInReleaseBuilds": true,
-            "enableShrinkResourcesInReleaseBuilds": true,
-            "useLegacyPackaging": true
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0"
           },
           "ios": {
             "deploymentTarget": "15.1"

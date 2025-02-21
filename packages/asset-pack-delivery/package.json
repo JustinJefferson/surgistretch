@@ -1,7 +1,7 @@
 {
   "name": "asset-pack-delivery",
   "version": "0.1.0",
-  "description": "uses asset pack directory to provide large asset files",
+  "description": "My new module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/PawpawTech/asset-pack-delivery/issues"
   },
-  "author": "PawpawTech <developer@pawpawtech.com> (https://github.com/PawpawTech)",
+  "author": "Angel Mendoza <developer@pawpawtech.com> (https://github.com/PawpawTech)",
   "license": "MIT",
   "homepage": "https://github.com/PawpawTech/asset-pack-delivery#readme",
   "dependencies": {},

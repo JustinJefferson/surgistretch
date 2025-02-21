@@ -1,50 +1,91 @@
 package expo.modules.assetpackdelivery
 
+import android.content.Context
+import android.content.res.AssetManager
+import android.os.Bundle
+import androidx.core.os.bundleOf
+import com.google.android.play.core.assetpacks.AssetPackManager
+import com.google.android.play.core.assetpacks.AssetPackManagerFactory
+import com.google.android.play.core.assetpacks.AssetPackState
+import com.google.android.play.core.ktx.requestFetch
+import com.google.android.play.core.ktx.requestPackStates
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
-import java.net.URL
+import expo.modules.kotlin.Promise
+import expo.modules.kotlin.functions.Coroutine
+import java.io.FileInputStream
+import java.io.InputStream
+import java.util.Base64
 
 class AssetPackDeliveryModule : Module() {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
   override fun definition() = ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('AssetPackDelivery')` in JavaScript.
     Name("AssetPackDelivery")
 
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants(
-      "PI" to Math.PI
+    AsyncFunction("loadPackedAssetAsByteArray") { assetName: String, assetPackName: String?, promise: Promise ->
+      promise.resolve(readAssetAsBytes(assetName, assetPackName))
+    }
+
+    AsyncFunction("loadPackedAssetAsBase64") { assetName: String, assetPackName: String?, promise: Promise ->
+      promise.resolve(Base64.getEncoder().encodeToString(readAssetAsBytes(assetName, assetPackName)))
+    }
+
+    AsyncFunction("getAssetPackStates") Coroutine { assetPackNames: List<String> ->
+      assetPackManager.requestPackStates(assetPackNames).packStates()
+        .mapValues { assetPackStateAsBundle(it.value) }
+    }
+
+    AsyncFunction("requestAssetPackFetch") Coroutine { assetPackNames: List<String> ->
+      assetPackManager.requestFetch(assetPackNames)
+    }
+
+
+    Events("onAssetPackStateUpdate")
+
+    OnStartObserving {
+      assetPackManager.registerListener(listener)
+    }
+
+    OnStopObserving {
+      assetPackManager.unregisterListener(listener)
+    }
+  }
+
+  private val context: Context
+    get() = requireNotNull(appContext.reactContext)
+
+  /** AssetManager for install-time assets. */
+  private val assetManager: AssetManager
+    get() = context.assets
+
+  /** AssetPackManager for on-demand assets. */
+  private val assetPackManager: AssetPackManager
+    get() = requireNotNull(AssetPackManagerFactory.getInstance(context))
+
+  private val listener = ExpoAssetPackStateUpdateListener(this)
+
+  private fun readAssetAsBytes(assetName: String, assetPackName: String?): ByteArray {
+    val stream: InputStream
+    if (assetPackName != null) {
+      val packLocation = assetPackManager.getPackLocation(assetPackName)?.assetsPath()
+      stream = FileInputStream("$packLocation/$assetName")
+    } else {
+      stream = assetManager.open(assetName)
+    }
+    try {
+      return stream.readBytes()
+    } finally {
+      stream.close()
+    }
+  }
+
+  public fun assetPackStateAsBundle(state: AssetPackState): Bundle {
+    return bundleOf(
+      "name" to state.name(),
+      "status" to state.status(),
+      "errorCode" to state.errorCode(),
+      "bytesDownloaded" to state.bytesDownloaded(),
+      "totalBytesToDownload" to state.totalBytesToDownload(),
+      "transferProgressPercentage" to state.transferProgressPercentage()
     )
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { value: String ->
-      // Send an event to JavaScript.
-      sendEvent("onChange", mapOf(
-        "value" to value
-      ))
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of
-    // the view definition: Prop, Events.
-    View(AssetPackDeliveryView::class) {
-      // Defines a setter for the `url` prop.
-      Prop("url") { view: AssetPackDeliveryView, url: URL ->
-        view.webView.loadUrl(url.toString())
-      }
-      // Defines an event that the view can send to JavaScript.
-      Events("onLoad")
-    }
   }
 }
