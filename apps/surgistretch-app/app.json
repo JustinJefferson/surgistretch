@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "surgistretch",
+    "slug": "surgistretch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/SurgiStretchLogoLargeBlack.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.surgistretch"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/SurgiStretchLogoLargeBlack.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.surgistretch"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "asset-pack-delivery",
+        [{
+          "name": "assets",
+          "path": "asset-pack",
+          "deliveryMode": "install-time"
+        }]
+      ],
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/SurgiStretchLogoLargeBlack.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#58ACAF"
+        }
+      ],
+      "expo-video",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
+            "minSdkVersion": 26
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "06a9b5ab-cb33-4bed-a15f-77dffb751356"
+      }
+    }
+  }
+}
