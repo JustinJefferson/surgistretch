@@ -6,7 +6,6 @@ import { loadPackedAssetAsBase64 } from 'asset-pack-delivery';
 import { useEffect, useState } from "react";
 import { CHAIR_CAT_COW } from '@/constants/Data'
 
-
 export default function VideoScreen({ title }) {
 // const [base64, setBase64] = useState<string | null>(null);
 
@@ -21,7 +20,7 @@ export default function VideoScreen({ title }) {
 
   const videoHeight = Dimensions.get('window').width * 0.57;
   const videoSource = getVideoMP4(title);
-  const player = useVideoPlayer({ uri: videoSource }, player => {
+  const player = useVideoPlayer(videoSource, player => {
     player.loop = false;
     player.play();
   });

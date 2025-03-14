@@ -20,7 +20,8 @@
         "resourceClass": "medium"
       },
       "ios": {
-        "resourceClass": "medium"
+        "resourceClass": "medium",
+        "simulator": true
       }
     }
   },
