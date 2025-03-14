@@ -30,11 +30,115 @@ import {
   TRUNK_EXTENSION
 } from '@/constants/Data'
 
-const getDefaultMP4 = () => require('../asset-pack/videos/OR_Chin_Tucks.mp4');
-
 export const getVideoMP4 = ( title ) => {
+  const platform = process.env.BUILD_PLATFORM;
+  console.log(platform)
+  if (platform === "android") {
+    return getVideoMP4ForAndroid(title);
+  }
+  return getVideoMP4ForIOS(title);
+}
+
+const getDefaultMP4ForAndroid = () => require('asset:/videos/OR_Chin_Tucks.mp4');
+
+const getDefaultMP4ForIOS = () => require('../asset-pack/videos/OR_Chin_Tucks.mp4');
+
+const getVideoMP4ForAndroid = ( title ) => {
   if (typeof title !== "string") {
-    return getDefaultMP4();
+      return getDefaultMP4ForAndroid();
+    }
+    if (title === ANTIROTATION_PRESS) {
+      return 'asset:/videos/Antirotation Press.mp4';
+    }
+    if (title === CHAIR_CAT_COW) {
+      return 'asset:/videos/Chair_Cat_Cow.mp4';
+    }
+    if (title === CHIN_TUCKS) {
+      return 'asset:/videos/OR_Chin_Tucks.mp4';
+    }
+    if (title === DOORWAY_ARM_STRETCHES) {
+      return 'asset:/videos/Doorway_Arm_Stretches.mp4';
+    }
+    if (title === ELASTIC_BAND_BRIDGE) {
+      return 'asset:/videos/Elastic_Band_Bridge.mp4';
+    }
+    if (title === ELASTIC_BAND_CHOPS) {
+      return 'asset:/videos/Elastic_Band_Chops.mp4';
+    }
+    if (title === FABER_STRETCH) {
+      return 'asset:/videos/Faber_Stretch.mp4';
+    }
+    if (title === HEEL_LIFTS) {
+      return 'asset:/videos/Heel_Lifts.mp4';
+    }
+    if (title === HINGE) {
+      return 'asset:/videos/OR_Hinge.mp4';
+    }
+    if (title === HIP_FLEXOR_STRETCH) {
+      return 'asset:/videos/Hip_Flexor_Stretch.mp4';
+    }
+    if (title === KNEELING_CHOPS) {
+      return 'asset:/videos/Kneeling_Chops.mp4';
+    }
+    if (title === LATERAL_PLANK_WITH_CLAMS) {
+      return 'asset:/videos/Lateral_Plank_With_Clams.mp4';
+    }
+    if (title === MEDICINE_BALL_SQUAT) {
+      return 'asset:/videos/Medicine_Ball_Chop_Squat.mp4';
+    }
+    if (title === PIRIFORMIS_STRETCH) {
+      return 'asset:/videos/Piriformis_Stretch.mp4';
+    }
+    if (title === PRONE_TS) {
+      return 'asset:/videos/Prone_Ts.mp4';
+    }
+    if (title === QUADRUPED_THORACIC_ROTATION) {
+      return 'asset:/videos/Quadriped_Thoracic_Rotation.mp4';
+    }
+    if (title === SCAPULAR_RETRACTION) {
+      return 'asset:/videos/OR_Scapular_Retraction.mp4';
+    }
+    if (title === SCAPULAR_RETRACTION_AS) {
+      return 'asset:/videos/Scapular Retractions As.mp4';
+    }
+    if (title === SEATED_PRETZEL) {
+      return 'asset:/videos/Seated_Bretzel.mp4';
+    }
+    if (title === SHOULDER_BLADE_RETRACTIONS) {
+      return 'asset:/videos/Shoulder_Blade_Retractions.mp4';
+    }
+    if (title === SIDE_LAYING_TRUNK_ROTATION) {
+      return 'asset:/videos/Sidelaying_Trunk_Rotation.mp4';
+    }
+    if (title === SINGLE_LEG_DEADLIFTS) {
+      return 'asset:/videos/Single_Leg_Deadlift.mp4';
+    }
+    if (title === SQUAT_WITH_HIP_HINGE) {
+      return 'asset:/videos/Squat_With_Hip_Hinge.mp4';
+    }
+    if (title === SQUATS) {
+      return 'asset:/videos/OR_Squats.mp4';
+    }
+    if (title === STANDING_DEADLIFTS) {
+      return 'asset:/videos/OR_Standing_Deadlifts.mp4';
+    }
+    if (title === STANDING_LAT_PULL) {
+      return 'asset:/videos/Standing_Lat_Pull.mp4';
+    }
+    if (title === STANDING_TRUNK_ROTATION) {
+      return 'asset:/videos/Standing Trunk Rotation.mp4';
+    }
+    if (title === SUPINE_PELVIC_TILT) {
+      return 'asset:/videos/Supine_Pelvic_Tilt.mp4';
+    }
+    if (title === TRUNK_EXTENSION) {
+      return 'asset:/videos/Trunk_Extension.mp4';
+    }
+}
+
+const getVideoMP4ForIOS = ( title ) => {
+  if (typeof title !== "string") {
+    return getDefaultMP4ForIOS();
   }
   if (title === ANTIROTATION_PRESS) {
     return require('../asset-pack/videos/Antirotation Press.mp4');
