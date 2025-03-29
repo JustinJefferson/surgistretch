@@ -7,6 +7,7 @@ export const paletteBlack = '#182C40';
 export const paletteWhite = '#FBFDFC';
 export const paletteTealDark = '#58ACAF';
 export const paletteTealLight = '#99CAC5';
+export const paletteTealLightContrast = '#A4EEE7'
 export const paletteTealDarkContrast = '#198386';
 export const paletteRed = '#D73C36';
 const tintColorLight = '#0a7ea4';

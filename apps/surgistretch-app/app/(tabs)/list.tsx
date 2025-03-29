@@ -2,7 +2,7 @@ import { Text, ScrollView, View } from "react-native";
 import { Section } from "@/components/Section";
 import { exerciseData } from "@/constants/Data";
 
-export default function Index() {
+export default function VideoList() {
   return (
     <ScrollView>
       <View style={{ justifyContent: "center", alignItems: "center" }}>

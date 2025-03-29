@@ -39,7 +39,7 @@ export const getVideoMP4 = ( title ) => {
   return getVideoMP4ForIOS(title);
 }
 
-const getDefaultMP4ForAndroid = () => require('asset:/videos/OR_Chin_Tucks.mp4');
+const getDefaultMP4ForAndroid = () => 'asset:/videos/OR_Chin_Tucks.mp4';
 
 const getDefaultMP4ForIOS = () => require('../asset-pack/videos/OR_Chin_Tucks.mp4');
 
