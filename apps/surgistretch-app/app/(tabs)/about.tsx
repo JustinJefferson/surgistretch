@@ -20,9 +20,9 @@ export default function About() {
           <View style={styles.imageView}>
             <Image style={styles.image} source={devLogo} />
           </View>
-          <Text style={styles.headerText}>About Hartford Healthcare</Text>
+          <Text style={styles.headerText}>About Pawpaw Technology</Text>
           <Text style={styles.aboutText}>
-            At our Hartford Hospital Urogynecology Program, we are passionate about training proficient vaginal surgeons; ergonomics is a critical part of surgeon success and longevity. We enlisted our physical therapy colleagues to observe vaginal surgery and recommend exercises to help relieve the physical strain of surgery. These videos are examples of the recommended exercises to perform in the OR, between cases, and at home to promote surgeon health and physical well-being. We developed this application to share this resource with other vaginal surgeons.
+            Pawpaw Technology is a team of developers who love building apps that simplify tasks and add a little more enjoyment to your day. We focus on creating intuitive, practical, and well-designed solutions, and are always excited to bring new ideas to life.
           </Text>
         </View>
       </View>

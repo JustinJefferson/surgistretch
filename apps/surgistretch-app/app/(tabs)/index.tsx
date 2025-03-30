@@ -10,7 +10,7 @@ export default function Index() {
     return (
         <View style={{
             justifyContent: "center", alignItems: "center" , backgroundColor: paletteTealLightContrast, flex: 1,
-            paddingTop: 75,
+            paddingTop: 85,
             paddingBottom: 20,
             flexDirection: 'column'}}>
             <View style={{justifyContent: 'center', alignContent: 'center'}}>
@@ -23,7 +23,7 @@ export default function Index() {
                 <View style={styles.imageView}>
                     <Image style={styles.image} source={hhcLogo} />
                 </View>
-                <Text style={styles.disclaimerText}>The videos provided are for personal use only and not intended to deal with physical injury. Seek medical attention if experiencing pain while perform stretches.</Text>
+                <Text style={styles.disclaimerText}>The videos provided are for personal use and general informational purposes only. They are not intended to diagnose, treat, or prevent any medical condition, nor are they a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider before beginning any new exercise, stretching, or physical activity program, especially if you have a pre-existing condition, injury, or concern.</Text>
             </View>
         </View>
     );
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: paletteBlack,
-        fontSize: 20,
+        fontSize: 18,
+        fontWeight: 'bold',
         textAlign: 'center'
     },
     disclaimerText: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         paddingHorizontal: 20,
-
+        paddingTop: 16
     }
 })
 
