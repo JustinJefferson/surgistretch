@@ -17,11 +17,11 @@ export default function Index() {
                 <Text style={styles.text}>Welcome to</Text>
                 <Text style={styles.header}>SurgiStretch</Text>
                 <View style={styles.imageView}>
-                    <Image style={styles.image} source={logo} />
+                    <Image style={styles.logoImage} source={logo} />
                 </View>
                 <Text style={styles.text}>Brought to you by</Text>
                 <View style={styles.imageView}>
-                    <Image style={styles.image} source={hhcLogo} />
+                    <Image style={styles.hhcLogoImage} source={hhcLogo} />
                 </View>
                 <Text style={styles.disclaimerText}>The videos provided are for personal use and general informational purposes only. They are not intended to diagnose, treat, or prevent any medical condition, nor are they a substitute for professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider before beginning any new exercise, stretching, or physical activity program, especially if you have a pre-existing condition, injury, or concern.</Text>
             </View>
@@ -30,8 +30,12 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 300,
+    logoImage: {
+        height: 300,
+        resizeMode: 'contain',
+    },
+    hhcLogoImage: {
+        height: 120,
         resizeMode: 'contain',
     },
     imageView: {
